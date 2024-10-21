@@ -6,7 +6,7 @@ In the show, contestants are asked to choose between three doors
 
 &nbsp;
 
-<div align="center"><img src="docs/overview.jpg" width="800" alt="Graphic from Brilliant"></div>
+<div align="center"><img src="docs/overview.jpg" width="400" alt="Graphic from Brilliant"></div>
 
 &nbsp;
 
