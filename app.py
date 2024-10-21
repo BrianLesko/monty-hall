@@ -4,41 +4,46 @@
 # Behind one door is a car, and behind the other two are goats. The contestant picks a door, and then the host
 # opens one of the other two doors to reveal a goat. The contestant is then given the option to switch doors.
 
-
 import random
 import plotly.express as px
 import pandas as pd
+import streamlit as st
+import time
 
-# Function to simulate the Monty Hall problem
 def monty_hall(switch):
-    # Initialize the doors
     doors = ['car', 'goat', 'goat']
-    # Shuffle the doors
     random.shuffle(doors)
-    # Contestant picks a door
-    contestant_pick = random.choice(doors)
-    # Host reveals a door
-    host_reveal = random.choice([i for i in range(3) if doors[i] == 'goat' and doors[i] != contestant_pick])
-    # Contestant switches doors
+    contestant_pick = random.randint(0, 2)
+    host_reveal = random.choice([i for i in range(3) if doors[i] == 'goat' and i != contestant_pick])
     if switch:
-        contestant_pick = [i for i in range(3) if i != host_reveal and i != doors.index(contestant_pick)][0]
-    # Return the result
+        contestant_pick = [i for i in range(3) if i != contestant_pick and i != host_reveal][0]
     return doors[contestant_pick] == 'car'
 
-# Number of simulations
-n = 1000
-# Run the simulations
-switch_results = [monty_hall(True) for i in range(n)]
-stay_results = [monty_hall(False) for i in range(n)]
+st.title('Monty Hall Simulation')
 
-# Create a DataFrame
-df = pd.DataFrame({'Switch': switch_results, 'Stay': stay_results})
-# Melt the DataFrame
-df = df.melt(var_name='Strategy', value_name='Win')
-# Group by the strategy and calculate the win rate
-df = df.groupby('Strategy')['Win'].mean().reset_index()
+Results = st.empty()
+Plot = st.empty()
+st.write("The Monty Hall problem is the classic probability problem where a contestant is presented with three doors. Behind one door is a car, and behind the other two are goats. The contestant picks a door, and then the host opens one of the other two doors to reveal a goat. The contestant is then given the option to switch doors.")
 
-# Create a bar chart
-fig = px.bar(df, x='Strategy', y='Win', text='Win', labels={'Win': 'Win Rate', 'Strategy': 'Strategy'}, title='Monty Hall Simulation')
-# Show the chart
-fig.show()
+n = 2500
+switch_results = []
+stay_results = []
+for i in range(1,n):
+  switch_results.append(monty_hall(True))
+  stay_results.append(monty_hall(False))
+  if i % 1 == 0 or i == n:   
+        switch_win_count = switch_results.count(True)
+        stay_win_count = stay_results.count(True)
+        df = pd.DataFrame({
+            'Simulation': list(range(1, i + 1)),
+            'Switch Wins': [switch_results[:x].count(True) for x in range(1, i + 1)],
+            'Stay Wins': [stay_results[:x].count(True) for x in range(1, i + 1)]
+        })
+        fig = px.line(df, x='Simulation', y=['Switch Wins', 'Stay Wins'],
+                      labels={'value': 'Number of Wins', 'variable': 'Strategy'},
+                      title='Monty Hall Simulation - Wins Over Time')
+        time.sleep(0.001)
+        Plot.plotly_chart(fig)
+        time.sleep(0.001)
+
+Results.write('### Switch Win Percentage: {:.2f}%'.format(100 * switch_results.count(True) / n))
