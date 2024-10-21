@@ -18,6 +18,10 @@ Watch the [Video by Brilliant](https://www.youtube.com/watch?app=desktop&v=Dlphp
 
 &nbsp;
 
+## Simulation Results
+
+&nbsp;
+
 <div align="center"><img src="docs/preview.gif" width="800" alt="Preview of the robotics engineering project"></div>
 
 &nbsp;
