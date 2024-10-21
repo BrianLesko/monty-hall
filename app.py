@@ -42,8 +42,7 @@ for i in range(1,n):
         fig = px.line(df, x='Simulation', y=['Switch Wins', 'Stay Wins'],
                       labels={'value': 'Number of Wins', 'variable': 'Strategy'},
                       title='Monty Hall Simulation - Wins Over Time')
-        time.sleep(0.001)
         Plot.plotly_chart(fig)
-        time.sleep(0.001)
+  time.sleep(0.001)
 
 Results.write('### Switch Win Percentage: {:.2f}%'.format(100 * switch_results.count(True) / n))
