@@ -1,12 +1,20 @@
 
 # Monty Hall Problem
-The Monty Hall problem is named after Monty Hall, the host of the American television game show Let’s Make a Deal. In the show, contestants were often asked to choose between three doors, behind one of which was a valuable prize (like a car), while the other two doors concealed less desirable prizes (like goats). 
+The Monty Hall problem is named after Monty Hall, the host of the American television game show Let’s Make a Deal. 
+
+In the show, contestants are asked to choose between three doors
+
+&nbsp;
+
+<div align="center"><img src="docs/overview.jpg" width="800" alt="Graphic from Brilliant"></div>
+
+&nbsp;
 
 After the contestant chose a door, Monty Hall, who knew what was behind each door, would reveal a goat behind one of the two remaining doors. The contestant was then given the option to either stick with their original choice or switch to the other unopened door.
 
-The mathematical problem based on this scenario demonstrates that switching doors gives the contestant a higher probability (2/3) of winning the car, compared to sticking with the initial choice (1/3). Despite its counterintuitive nature, this has been mathematically proven and sparked much debate when it was popularized.
+This repository simulates playing the game many times switching and non switching.
 
-This repository simulates the outcomes of playing the game many times switching and non switching with less than 50 lines of code and with a live plotting interface as the simulation runs
+Watch the [Video by Brilliant](https://www.youtube.com/watch?app=desktop&v=DlphpbxNTLw) for more info.
 
 &nbsp;
 
